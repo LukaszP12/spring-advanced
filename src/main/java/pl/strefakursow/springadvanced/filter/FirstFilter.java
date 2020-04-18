@@ -21,7 +21,7 @@ public class FirstFilter implements Filter {
     // it can also be processed to a another filter
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("doFilter");
+        //System.out.println("FirstFilter doFilter!");
         chain.doFilter(request,response);
     }
 
