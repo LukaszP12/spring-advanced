@@ -22,4 +22,6 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 
     public List<Item> findByQuantityBetween(Integer minQuantity,Integer maxQuantity);
 
+    public List<Item> findByQuantityGreaterThanEqualOrderByQuantityDesc(Integer minQuantity);
+
 }

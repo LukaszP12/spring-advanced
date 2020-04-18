@@ -27,7 +27,9 @@ public class MainController {
 
 		//return itemService.getItemsWithQuantityOverTwenty();
 		//return itemService.findByQuantity(20);
-		return itemService.findByQuantityBetween(50,300);
+		//return itemService.findByQuantityBetween(50,300);
+
+		return itemService.findByQuantityGreaterThanEqualOrderByQuantityDesc(50);
 	}
 
 	@RequestMapping("/quantity_treshold")

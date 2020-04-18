@@ -44,4 +44,9 @@ public class ItemServiceImp implements ItemService {
         return itemRepository.findByQuantityBetween(min,max);
     }
 
+    @Override
+    public List<Item> findByQuantityGreaterThanEqualOrderByQuantityDesc(int minQuantity) {
+        return itemRepository.findByQuantityGreaterThanEqualOrderByQuantityDesc(minQuantity);
+    }
+
 }

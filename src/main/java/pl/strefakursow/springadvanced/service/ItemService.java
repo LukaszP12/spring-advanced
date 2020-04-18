@@ -19,4 +19,6 @@ public interface ItemService {
 
     public List<Item> findByQuantityBetween(int min, int max);
 
+    public List<Item> findByQuantityGreaterThanEqualOrderByQuantityDesc(int minQuantity);
+
 }
