@@ -15,4 +15,8 @@ public interface ItemService {
 
     public List<Item> getItemsWithNameLike(String regex);
 
+    public List<Item> findByQuantity(int quantity);
+
+    public List<Item> findByQuantityBetween(int min, int max);
+
 }

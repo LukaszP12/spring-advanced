@@ -18,4 +18,8 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("select i from Item i where i.name LIKE :regex")
     public List<Item> getItemsWithNameLike(@Param("regex") String regex);
 
+    public List<Item> findByQuantity(int quantity);
+
+    public List<Item> findByQuantityBetween(Integer minQuantity,Integer maxQuantity);
+
 }

@@ -25,7 +25,9 @@ public class MainController {
 		item.setPrice(10000);
 		itemService.saveItem(item); */
 
-		return itemService.getItemsWithQuantityOverTwenty();
+		//return itemService.getItemsWithQuantityOverTwenty();
+		//return itemService.findByQuantity(20);
+		return itemService.findByQuantityBetween(50,300);
 	}
 
 	@RequestMapping("/quantity_treshold")
@@ -45,5 +47,6 @@ public class MainController {
 
 		return result;
 	}
+
 
 }
