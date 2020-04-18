@@ -1,8 +1,11 @@
 package pl.strefakursow.springadvanced.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.strefakursow.springadvanced.entity.Item;
+import pl.strefakursow.springadvanced.repository.ItemPagingAndSortingRepository;
 import pl.strefakursow.springadvanced.repository.ItemRepository;
 import pl.strefakursow.springadvanced.service.ItemService;
 
@@ -13,6 +16,9 @@ public class ItemServiceImp implements ItemService {
 
     @Autowired
     ItemRepository itemRepository;
+
+    @Autowired
+    ItemPagingAndSortingRepository itemPagingAndSortingRepository;
 
     @Override
     public void saveItem(Item item) {
@@ -48,5 +54,11 @@ public class ItemServiceImp implements ItemService {
     public List<Item> findByQuantityGreaterThanEqualOrderByQuantityDesc(int minQuantity) {
         return itemRepository.findByQuantityGreaterThanEqualOrderByQuantityDesc(minQuantity);
     }
+
+    @Override
+    public Page<Item> findAll(Pageable pageable) {
+        return itemPagingAndSortingRepository.findAll(pageable);
+    }
+
 
 }

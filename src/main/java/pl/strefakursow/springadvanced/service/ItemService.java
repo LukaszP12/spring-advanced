@@ -1,5 +1,7 @@
 package pl.strefakursow.springadvanced.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.strefakursow.springadvanced.entity.Item;
 
@@ -20,5 +22,7 @@ public interface ItemService {
     public List<Item> findByQuantityBetween(int min, int max);
 
     public List<Item> findByQuantityGreaterThanEqualOrderByQuantityDesc(int minQuantity);
+
+    public Page<Item> findAll(Pageable pageable);
 
 }
