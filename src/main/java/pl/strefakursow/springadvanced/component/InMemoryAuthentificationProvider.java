@@ -2,17 +2,21 @@ package pl.strefakursow.springadvanced.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+@Component
 public class InMemoryAuthentificationProvider implements AuthenticationProvider {
 
     private static final String USERNAME_CANNOT_BE_NULL = "Username cannot be null";
     private static final String CREDENTIALS_CANNOT_BE_NULL = "Credentials cannot be null";
+    private static final String INCORRECT_PASSWORD = "Incorrect password";
     UserDetailsService userDetailsService;
 
     // it is better in inject using the constructor, as leaves better visibility of the dependencies
@@ -35,11 +39,16 @@ public class InMemoryAuthentificationProvider implements AuthenticationProvider 
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(name);
 
+        if (!password.equals(userDetails.getPassword())) {
+            throw new BadCredentialsException(INCORRECT_PASSWORD);
+        }
+
         UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(name, password, userDetails.getAuthorities());
 
         return auth;
     }
 
+    // checks if the transfered class equals to UsernamePasswordAuthenticationToken
     @Override
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);

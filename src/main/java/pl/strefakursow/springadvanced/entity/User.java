@@ -21,6 +21,7 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    // class Collection extending the GrantedAuthority interface
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream().map(r -> new SimpleGrantedAuthority(r)).collect(Collectors.toList());
